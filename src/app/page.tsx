@@ -1,7 +1,10 @@
-import Image from "next/image";
+import SignUp from '@/components/login/page'
 
 export default function Home() {
   return (
-    <div>taskSync</div>
+    <div>
+      <SignUp/>
+    </div>
+    
   );
 }
