@@ -2,9 +2,7 @@
 import React from "react";
 
 const page = () => {
-  const handleinputchange = async (e: React.FormEvent) => {
-    
-  };
+  const handleinputchange = async (e: React.FormEvent) => {};
   return (
     <div>
       <div>
