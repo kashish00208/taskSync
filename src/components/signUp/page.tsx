@@ -77,7 +77,7 @@ const page = () => {
               required
             />
           </div>
-          <button type="submit"></button>
+          <button type="submit">Submit</button>
         </form>
       </div>
     </div>
