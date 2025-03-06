@@ -2,7 +2,7 @@ import mongoose, { Schema, Document } from "mongoose";
 
 export interface User extends Document {
   email: string;
-  name: string;
+  username: string;
   role: string;
   password: string;
 }
@@ -17,7 +17,7 @@ const UserSchema: Schema<User> = new Schema({
       "Please enter a valid email address",
     ],
   },
-  name: {
+  username: {
     type: String,
     required: [true, "Name is required"],
   },
