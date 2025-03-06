@@ -7,13 +7,13 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method === 'POST') {
     const { email, username, password, role } = req.body;
 
-    // Check if all fields are provided
+    // Checking if all fields are provided
     if (!email || !username || !password || !role) {
       return res.status(400).json({ message: "Please provide all fields." });
     }
 
     try {
-      // Connect to the database
+      // Connect database
       await dbConnect();
 
       // Check if the email already exists
