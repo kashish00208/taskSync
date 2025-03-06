@@ -38,9 +38,11 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(201).json({ message: "User created successfully!", token });
     } catch (error) {
       console.error(error);
-      return res.status(500).json({ message: "Server error. Please try again later." });
+
+      return res.status(500).json({ message: "Server error. Please try again later." })
     }
   } else {
+    
     return res.status(405).json({ message: "Method not allowed" });
   }
 };
