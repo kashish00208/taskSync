@@ -17,7 +17,7 @@ const Page = () => {
     }
 
     try {
-      const res = await fetch("pages/Auth/Login", {
+      const res = await fetch("/api/auth/Login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
