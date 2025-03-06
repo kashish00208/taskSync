@@ -1,46 +1,37 @@
 "use client";
 import React, { useState } from "react";
 import Router from "next/router";
-
-const Page = () => {
+const page = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
   const [msg, setMsg] = useState("");
-
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-
     if (!email || !username || !password || !role) {
-      setMsg("All fields are required");
-      console.log("All fields are required");
+      setMsg("All feilds are required");
+      console.log("All feilds are required");
       return;
     }
-
     try {
-      const res = await fetch("/api/auth/signUp", {
+      const res = fetch("/api/auht/signUp", {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "content-type": "application/json",
         },
         body: JSON.stringify({ email, username, password, role }),
       });
-
-      const data = await res.json();
-
-      if (res.status === 201) {
+      const data = await (await res).json();
+      if ((await res).status === 201) {
         Router.push("/dashboard");
       } else {
-        setMsg(data.message || "An error occurred");
-        console.error(data.message || "An error occurred");
+        console.error(data.message);
       }
     } catch (error) {
-      setMsg("Server error, please try again later.");
-      console.error(error);
+      setMsg("Server error try again later");
     }
   };
-
   return (
     <div>
       <div>
@@ -57,9 +48,9 @@ const Page = () => {
             />
           </div>
           <div className="">
-            <label htmlFor="username">Username</label>
+            <label htmlFor="username">username</label>
             <input
-              type="text"
+              type="username"
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
@@ -67,7 +58,7 @@ const Page = () => {
             />
           </div>
           <div className="">
-            <label htmlFor="password">Password</label>
+            <label htmlFor="password">password</label>
             <input
               type="password"
               id="password"
@@ -77,20 +68,20 @@ const Page = () => {
             />
           </div>
           <div className="">
-            <label htmlFor="role">Role</label>
+            <label htmlFor="role">role</label>
             <input
-              type="text"
+              type="role"
               id="role"
               value={role}
               onChange={(e) => setRole(e.target.value)}
               required
             />
           </div>
-          <button type="submit">Submit</button>
+          <button type="submit"></button>
         </form>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default page;

@@ -4,10 +4,10 @@ import User from "@/models/User";
 import bcrypt from 'bcryptjs';  
 import jwt from 'jsonwebtoken';  
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
-    const { username, email, password, role } = req.body;
+    const {  email, password} = req.body;
 
     if (req.method === 'POST') {
-        if (!username || !email || !password || !role) {
+        if ( !email || !password ) {
             return res.status(400).json({ message: "All fields are required" });
         }
 
@@ -28,7 +28,7 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
             }
 
             const token = jwt.sign(
-                { id: existingUser._id, email: existingUser.email, role: existingUser.role },
+                { id: existingUser._id, email: existingUser.email},
                 process.env.JWT_SECRET!,  
                 { expiresIn: '1h' }       
             );
@@ -40,7 +40,6 @@ const login = async (req: NextApiRequest, res: NextApiResponse) => {
                     id: existingUser._id,
                     email: existingUser.email,
                     username: existingUser.username,
-                    role: existingUser.role
                 }
             });
 
