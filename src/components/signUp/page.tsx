@@ -15,7 +15,7 @@ const page = () => {
       return;
     }
     try {
-      const res = fetch("/api/auht/signUp", {
+      const res = fetch("/pages/Auth/SignUp", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -43,6 +43,7 @@ const page = () => {
               type="email"
               id="email"
               value={email}
+              placeholder="Enter the email ID"
               onChange={(e) => setEmail(e.target.value)}
               required
             />
@@ -53,6 +54,7 @@ const page = () => {
               type="username"
               id="username"
               value={username}
+              placeholder="Enter username"
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -61,6 +63,7 @@ const page = () => {
             <label htmlFor="password">password</label>
             <input
               type="password"
+              placeholder="Enter the Password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -73,6 +76,7 @@ const page = () => {
               type="role"
               id="role"
               value={role}
+              placeholder="Enter your role"
               onChange={(e) => setRole(e.target.value)}
               required
             />
