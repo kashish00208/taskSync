@@ -40,33 +40,41 @@ const Page = () => {
   };
 
   return (
-    <div>
-      <div>
-        <p>{msg}</p>
-        <form onSubmit={handleSubmitForm}>
-          <div className="">
-            <label htmlFor="email">Email</label>
+    <div className="h-screen w-screen bg-gradient-to-r from-slate-100 to-indigo-600 flex justify-center items-center">
+      <div className="bg-white p-8 rounded-3xl shadow-lg w-96">
+        <p className="text-lg font-semibold text-center mb-4">LOGIN</p>
+        {msg && <p className="text-red-500 text-sm text-center mb-4">{msg}</p>}
+        <form onSubmit={handleSubmitForm} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full p-2 border border-gray-300 rounded-lg"
             />
           </div>
 
-          <div className="">
-            <label htmlFor="password">Password</label>
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700">Password</label>
             <input
               type="password"
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
+              className="w-full p-2 border border-gray-300 rounded-lg"
             />
           </div>
 
-          <button type="submit">Submit</button>
+          <button
+            type="submit"
+            className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition"
+          >
+            Submit
+          </button>
         </form>
       </div>
     </div>
