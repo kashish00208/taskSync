@@ -31,7 +31,7 @@ const SignUp = () => {
         console.error(data.message);
       }
     } catch (error) {
-      setMsg("Server error, try again later");
+      setMsg("Server error, try again later"+error);
     }
   };
 
