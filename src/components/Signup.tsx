@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Router from "next/router";
 
-const Page = () => {
+const SignUp = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -89,4 +89,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default SignUp;
