@@ -1,4 +1,4 @@
-import SignUp from "@/components/Signup";
+import SignUp from '../components/SignUp'
 export default function Home() {
   return (
     <div>
