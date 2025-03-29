@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
-import User from "../models/User";
-import dbConnect from "../lib/dbConnect";
-import { hashPassword, createToken } from "../lib/authutils";
+import User from "../../models/User";
+import dbConnect from "../../lib/dbConnect";
+import { hashPassword, createToken } from "../../lib/authutils";
 
 const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { email, username, password, role } = req.body;

@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
-import dbConnect from "../lib/dbConnect";
-import User from "../models/User";
+import dbConnect from "../../lib/dbConnect";
+import User from "../../models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 const login = async (req: NextApiRequest, res: NextApiResponse) => {
