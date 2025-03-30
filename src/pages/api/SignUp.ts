@@ -4,17 +4,19 @@ import dbConnect from "../../lib/dbConnect";
 import { hashPassword, createToken } from "../../lib/authutils";
 
 const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log("Sign-up started")
   const { email, username, password, role } = req.body;
+  console.log("Fteched data from user")
 
   // Checking if all fields are provided
   if (!email || !username || !password || !role) {
     return res.status(400).json({ message: "Please provide all fields." });
   }
-
+  console.log("check 1")
   try {
     // Connect database
     await dbConnect();
-
+    console.log("database connected")
     // Check if the email already exists
     const existingUser = await User.findOne({ email: email });
     if (existingUser) {
@@ -24,6 +26,7 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // Hash the password
+    console.log("Creating hashed passward for new User and ragistering into tha database")
     const hashedPassword = await hashPassword(password);
 
     // Create the new user
@@ -33,11 +36,13 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       password: hashedPassword,
       role,
     });
+    console.log("New user created")
 
     const token = createToken({
       email: newUser.email,
       username: newUser.username,
     });
+    console.log("token created for authentication")
 
     return res
       .status(201)
