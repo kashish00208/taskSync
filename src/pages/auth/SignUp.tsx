@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import Router from "next/router";
 
 const SignUp = () => {
   const [email, setEmail] = useState("");
@@ -17,18 +16,22 @@ const SignUp = () => {
       return;
     }
     try {
-      const res = await fetch("../pages/api/SignUp", {
+      const res = await fetch("/api/SignUp", {
         method: "POST",
         headers: {
           "content-type": "application/json",
         },
         body: JSON.stringify({ email, username, password, role }),
       });
+      if(!res.ok){
+        const errorText = await res.text();
+        throw new Error(`API server error : ${errorText}`)
+      }
       const data = await res.json();
       if (res.status === 201) {
-        Router.push("/dashboard");
+        console.log("SignUp proceeded")
       } else {
-        console.error(data.message);
+        console.error("Error while signup process" + data.message);
       }
     } catch (error) {
       setMsg("Server error, try again later"+error);
