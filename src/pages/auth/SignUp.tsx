@@ -5,12 +5,11 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("");
   const [msg, setMsg] = useState("");
 
   const handleSubmitForm = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email || !username || !password || !role) {
+    if (!email || !username || !password ) {
       setMsg("All fields are required");
       console.log("All fields are required");
       return;
@@ -21,7 +20,7 @@ const SignUp = () => {
         headers: {
           "content-type": "application/json",
         },
-        body: JSON.stringify({ email, username, password, role }),
+        body: JSON.stringify({ email, username, password }),
       });
       if(!res.ok){
         const errorText = await res.text();
@@ -71,15 +70,7 @@ const SignUp = () => {
             required
             className="w-full p-2 border border-gray-300 rounded-lg"
           />
-          <input
-            type="text"
-            id="role"
-            value={role}
-            placeholder="Enter your role"
-            onChange={(e) => setRole(e.target.value)}
-            required
-            className="w-full p-2 border border-gray-300 rounded-lg"
-          />
+         
           <button
             type="submit"
             className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition cursor-pointer"

@@ -5,11 +5,11 @@ import { hashPassword, createToken } from "../../lib/authutils";
 
 const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("Sign-up started")
-  const { email, username, password, role } = req.body;
+  const { email, username, password } = req.body;
   console.log("Fteched data from user")
 
   // Checking if all fields are provided
-  if (!email || !username || !password || !role) {
+  if (!email || !username || !password) {
     return res.status(400).json({ message: "Please provide all fields." });
   }
   console.log("check 1")
@@ -34,7 +34,6 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       email,
       username,
       password: hashedPassword,
-      role,
     });
     console.log("New user created")
 
