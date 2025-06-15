@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import User from "../../models/User";
 import dbConnect from "../../lib/dbConnect";
-import { hashPassword, createToken } from "../../lib/authutils";
+import { hashPassword } from "../../lib/authutils";
 
 const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("Sign-up started")
@@ -36,19 +36,18 @@ const signUPHandler = async (req: NextApiRequest, res: NextApiResponse) => {
       password: hashedPassword,
     });
     console.log("New user created")
-
-    const token = createToken({
-      email: newUser.email,
-      username: newUser.username,
-    });
-    console.log("token created for authentication")
+    console.log("JWT_SCRET",process.env.JWT_KEY)
+    // const token = createToken({
+    //   email: newUser.email,
+    //   username: newUser.username,
+    // });
+    // console.log("token created for authentication",token)
 
     return res
       .status(201)
-      .json({ message: "User created successfully!", token });
+      .json({ message: "User created successfully!" });
   } catch (error) {
     console.error(error);
-
     return res
       .status(500)
       .json({ message: "Server error. Please try again later." });
