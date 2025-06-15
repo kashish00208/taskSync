@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
-
+import { useRouter } from "next/navigation";
 const SignUp = () => {
+  const router = useRouter()
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -29,6 +30,8 @@ const SignUp = () => {
       const data = await res.json();
       if (res.status === 201) {
         console.log("SignUp proceeded")
+        setMsg("proceed to sign")
+        router.push('/login')
       } else {
         console.error("Error while signup process" + data.message);
       }
