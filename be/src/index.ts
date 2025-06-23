@@ -27,3 +27,6 @@ app.post("/chat", async (req, res) => {
   const answer = responce.choices[0]?.message?.content || ""
   console.log(answer)
 });
+app.listen(3000,()=>{
+  console.log("server is running over port 3000")
+})
